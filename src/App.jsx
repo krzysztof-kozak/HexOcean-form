@@ -4,8 +4,9 @@ const initialState = {
   dishName: '',
   preparationTime: '',
   dishType: '',
-  numberOfSlices: null,
-  diameter: null,
+  numberOfSlices: 1,
+  diameter: 30,
+  spiciness: 1,
 };
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
           </div>
 
           {formData.dishType === 'pizza' && (
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap gap-1 animate-slide-from-top">
               <label htmlFor="number-of-slices" className="basis-full text-sm font-medium">
                 Number of slices
               </label>
@@ -57,11 +58,50 @@ function App() {
           )}
 
           {formData.dishType === 'pizza' && (
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap gap-1 animate-slide-from-top">
               <label htmlFor="diameter" className="basis-full text-sm font-medium">
                 Diameter
               </label>
               <input className="basis-full rounded-md" type="number" name="diameter" id="diameter" />
+            </div>
+          )}
+
+          {formData.dishType === 'soup' && (
+            <div className="flex flex-wrap gap-1 animate-slide-from-top">
+              <label htmlFor="spiciness" className="basis-full text-sm font-medium">
+                Spiciness
+              </label>
+              <input
+                min={1}
+                max={10}
+                className="basis-full rounded-md"
+                type="range"
+                name="spiciness"
+                id="spiciness"
+                value={formData.spiciness}
+                onInput={(e) => setFormData({ ...formData, spiciness: e.target.value })}
+              />
+              <input
+                min={1}
+                max={10}
+                className="basis-full rounded-md"
+                type="number"
+                name="spiciness"
+                id="spiciness"
+                value={formData.spiciness}
+                onChange={(e) => {
+                  setFormData({ ...formData, spiciness: e.target.value });
+                }}
+              />
+            </div>
+          )}
+
+          {formData.dishType === 'sandwich' && (
+            <div className="flex flex-wrap gap-1 animate-slide-from-top">
+              <label htmlFor="slices" className="basis-full text-sm font-medium">
+                Slices
+              </label>
+              <input className="basis-full rounded-md" type="number" name="slices" id="slices" />
             </div>
           )}
 
