@@ -49,21 +49,21 @@ function App() {
           </div>
 
           {formData.dishType === 'pizza' && (
-            <div className="flex flex-wrap gap-1 animate-slide-from-top">
-              <label htmlFor="number-of-slices" className="basis-full text-sm font-medium">
-                Number of slices
-              </label>
-              <input className="basis-full rounded-md" type="number" name="number-of-slices" id="number-of-slices" />
-            </div>
-          )}
+            <>
+              <div className="flex flex-wrap gap-1 animate-slide-from-top">
+                <label htmlFor="number-of-slices" className="basis-full text-sm font-medium">
+                  Number of slices
+                </label>
+                <input className="basis-full rounded-md" type="number" name="number-of-slices" id="number-of-slices" />
+              </div>
 
-          {formData.dishType === 'pizza' && (
-            <div className="flex flex-wrap gap-1 animate-slide-from-top">
-              <label htmlFor="diameter" className="basis-full text-sm font-medium">
-                Diameter
-              </label>
-              <input className="basis-full rounded-md" type="number" name="diameter" id="diameter" />
-            </div>
+              <div className="flex flex-wrap gap-1 animate-slide-from-top">
+                <label htmlFor="diameter" className="basis-full text-sm font-medium">
+                  Diameter
+                </label>
+                <input className="basis-full rounded-md" type="number" name="diameter" id="diameter" />
+              </div>
+            </>
           )}
 
           {formData.dishType === 'soup' && (
