@@ -1,23 +1,19 @@
 export default function validateForm(formData) {
   const { dishName, preparationTime, dishType, numberOfSlices, slicesOfBread, diameter, spiciness } = formData;
 
-  if (!dishName || !preparationTime || !dishType) {
+  if (!dishName || preparationTime <= 0 || !dishType) {
     return false;
   }
 
   switch (dishType) {
     case 'pizza':
-      const slicesInt = parseInt(numberOfSlices);
-      const diameterInt = parseInt(diameter);
-      return Boolean(slicesInt) && Boolean(diameterInt);
+      return numberOfSlices > 0 && diameter > 0;
 
     case 'soup':
-      const spicinessInt = parseInt(spiciness);
-      return Boolean(spicinessInt);
+      return spiciness > 0;
 
     case 'sandwich':
-      const slicesOfBreadInt = parseInt(slicesOfBread);
-      return Boolean(slicesOfBreadInt);
+      return slicesOfBread > 0;
 
     default:
       break;
