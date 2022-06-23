@@ -92,15 +92,13 @@ function App() {
 
           {formData.dishType === 'sandwich' && (
             <div className="flex flex-wrap gap-1 animate-slide-from-top">
-              <div className="flex flex-wrap gap-1 animate-slide-from-top">
-                <InputField
-                  label="Slices"
-                  id="slicesOfBread"
-                  type="number"
-                  value={formData.slicesOfBread}
-                  onInputChange={handleInputChange}
-                />
-              </div>
+              <InputField
+                label="Slices"
+                id="slicesOfBread"
+                type="number"
+                value={formData.slicesOfBread}
+                onInputChange={handleInputChange}
+              />
             </div>
           )}
 
