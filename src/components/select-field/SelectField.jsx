@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 export default function SelectField({ id, label, value, options, onInputChange }) {
+  const [touched, setTouched] = useState(false);
+
   return (
     <>
       <label htmlFor={id} className="basis-full text-sm font-medium">
@@ -9,6 +13,7 @@ export default function SelectField({ id, label, value, options, onInputChange }
         name={id}
         id={id}
         onChange={(e) => onInputChange({ [id]: e.target.value })}
+        onBlur={() => setTouched(true)}
         value={value}
       >
         <option value="">Please select</option>
@@ -21,6 +26,9 @@ export default function SelectField({ id, label, value, options, onInputChange }
           );
         })}
       </select>
+      <div className="min-h-[20px]">
+        {!value && touched && <p className="w-56 basis-full text-sm text-red-500">This field is required</p>}
+      </div>
     </>
   );
 }
