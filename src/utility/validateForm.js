@@ -8,11 +8,10 @@ export default function validateForm(formData) {
   switch (dishType) {
     case 'pizza':
       const slicesInt = parseInt(numberOfSlices);
-      const diameterInt = parseInt(numberOfSlices);
+      const diameterInt = parseInt(diameter);
       return Boolean(slicesInt) && Boolean(diameterInt);
 
     case 'soup':
-      console.log(spiciness);
       const spicinessInt = parseInt(spiciness);
       return Boolean(spicinessInt);
 

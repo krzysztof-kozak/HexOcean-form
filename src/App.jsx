@@ -23,7 +23,6 @@ function App() {
     e.preventDefault();
 
     const shouldSubmit = validateForm(formData);
-    console.log(shouldSubmit);
   }
 
   return (
@@ -92,6 +91,7 @@ function App() {
                 label="Spiceness"
                 id="spiciness"
                 type="range"
+                range={{ min: 1, max: 10 }}
                 value={formData.spiciness}
                 onInputChange={handleInputChange}
               />
