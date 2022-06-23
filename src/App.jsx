@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { InputField, SelectField } from './components';
+import { validateForm } from './utility';
 
 const initialState = {
   dishName: '',
@@ -18,10 +19,17 @@ function App() {
     setFormData({ ...formData, ...nextInput });
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const shouldSubmit = validateForm(formData);
+    console.log(shouldSubmit);
+  }
+
   return (
     <div className="grid min-h-screen place-items-center bg-gray-200 px-6 sm:px-0">
       <div className="rounded-lg bg-white px-6 py-8 shadow md:px-10 w-full sm:max-w-lg">
-        <form className="space-y-3">
+        <form className="space-y-3" onSubmit={handleSubmit}>
           <h1 className="text-5xl font-bold mb-8">Your request</h1>
 
           <div className="flex flex-wrap gap-1">
