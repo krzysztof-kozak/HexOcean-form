@@ -10,7 +10,9 @@ export default function InputField({ id, label, type, value, onInputChange }) {
         name={id}
         id={id}
         value={value}
-        onChange={(e) => onInputChange({ [id]: e.target.value })}
+        min={1}
+        max={10}
+        onInput={(e) => onInputChange({ [id]: e.target.value })}
       />
     </>
   );

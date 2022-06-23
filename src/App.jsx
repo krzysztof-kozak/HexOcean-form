@@ -82,7 +82,7 @@ function App() {
             <div className="flex flex-wrap gap-1 animate-slide-from-top">
               <InputField
                 label="Spiceness"
-                id="spiceness"
+                id="spiciness"
                 type="range"
                 value={formData.spiciness}
                 onInputChange={handleInputChange}
