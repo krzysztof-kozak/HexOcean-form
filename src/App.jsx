@@ -12,8 +12,8 @@ const initialState = {
 function App() {
   const [formData, setFormData] = useState(initialState);
   return (
-    <div className="grid min-h-screen place-items-center bg-gray-200">
-      <div className="rounded-lg bg-white px-6 py-8 shadow md:px-10">
+    <div className="grid min-h-screen place-items-center bg-gray-200 px-6 sm:px-0">
+      <div className="rounded-lg bg-white px-6 py-8 shadow md:px-10 w-full sm:max-w-lg">
         <form className="space-y-6">
           <h1 className="text-5xl font-bold">Your request</h1>
 
