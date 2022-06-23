@@ -21,14 +21,31 @@ function App() {
             <label htmlFor="dish" className="basis-full text-sm font-medium">
               Dish name
             </label>
-            <input className="basis-full rounded-md" type="text" name="dish" id="dish" />
+            <input
+              className="basis-full rounded-md"
+              type="text"
+              name="dish"
+              id="dish"
+              value={formData.dishName}
+              onChange={(e) => setFormData({ ...formData, dishName: e.target.value })}
+            />
+            <div className="min-h-[20px]">
+              {!formData.dishName && <p className="w-56 basis-full text-sm text-red-500">Must provide a name</p>}
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-1">
             <label htmlFor="preparation-time" className="basis-full text-sm font-medium">
               Preparation time
             </label>
-            <input className="basis-full rounded-md" type="number" name="preparation-time" id="preparation-time" />
+            <input
+              className="basis-full rounded-md"
+              type="number"
+              name="preparation-time"
+              id="preparation-time"
+              value={formData.preparationTime}
+              onChange={(e) => setFormData({ ...formData, preparationTime: e.target.value })}
+            />
           </div>
 
           <div className="flex flex-wrap gap-1">
@@ -36,10 +53,11 @@ function App() {
               Dish type
             </label>
             <select
-              onChange={(e) => setFormData({ ...formData, dishType: e.target.value })}
               className="w-full rounded-md"
               name="dish-type"
               id="dish-type"
+              onChange={(e) => setFormData({ ...formData, dishType: e.target.value })}
+              value={formData.dishType}
             >
               <option value="">Please select</option>
               <option value="pizza">Pizza</option>
@@ -54,14 +72,28 @@ function App() {
                 <label htmlFor="number-of-slices" className="basis-full text-sm font-medium">
                   Number of slices
                 </label>
-                <input className="basis-full rounded-md" type="number" name="number-of-slices" id="number-of-slices" />
+                <input
+                  className="basis-full rounded-md"
+                  type="number"
+                  name="number-of-slices"
+                  id="number-of-slices"
+                  value={formData.numberOfSlices}
+                  onChange={(e) => setFormData({ ...formData, numberOfSlices: e.target.value })}
+                />
               </div>
 
               <div className="flex flex-wrap gap-1 animate-slide-from-top">
                 <label htmlFor="diameter" className="basis-full text-sm font-medium">
                   Diameter
                 </label>
-                <input className="basis-full rounded-md" type="number" name="diameter" id="diameter" />
+                <input
+                  className="basis-full rounded-md"
+                  type="number"
+                  name="diameter"
+                  id="diameter"
+                  value={formData.diameter}
+                  onChange={(e) => setFormData({ ...formData, diameter: e.target.value })}
+                />
               </div>
             </>
           )}
