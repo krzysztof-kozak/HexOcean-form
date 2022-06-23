@@ -21,8 +21,8 @@ function App() {
   return (
     <div className="grid min-h-screen place-items-center bg-gray-200 px-6 sm:px-0">
       <div className="rounded-lg bg-white px-6 py-8 shadow md:px-10 w-full sm:max-w-lg">
-        <form className="space-y-6">
-          <h1 className="text-5xl font-bold">Your request</h1>
+        <form className="space-y-3">
+          <h1 className="text-5xl font-bold mb-8">Your request</h1>
 
           <div className="flex flex-wrap gap-1">
             <InputField
