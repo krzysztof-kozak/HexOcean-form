@@ -1,19 +1,19 @@
 export default function validateForm(formData) {
-  const { dishName, preparationTime, dishType, numberOfSlices, slicesOfBread, diameter, spiciness } = formData;
+  const { name, preparation_time, type, no_of_slices, slices_of_bread, diameter, spiciness_scale } = formData;
 
-  if (!dishName || preparationTime <= 0 || !dishType) {
+  if (!name || preparation_time <= 0 || !type) {
     return false;
   }
 
-  switch (dishType) {
+  switch (type) {
     case 'pizza':
-      return numberOfSlices > 0 && diameter > 0;
+      return no_of_slices > 0 && diameter > 0;
 
     case 'soup':
-      return spiciness > 0;
+      return spiciness_scale > 0;
 
     case 'sandwich':
-      return slicesOfBread > 0;
+      return slices_of_bread > 0;
 
     default:
       break;
