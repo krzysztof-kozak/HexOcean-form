@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { InputField, SelectField } from './components';
-import { validateForm } from './utility';
+import { validateForm, prepareData, postData } from './utility';
 
 const initialState = {
-  dishName: '',
-  preparationTime: '',
-  dishType: '',
-  numberOfSlices: 1,
-  slicesOfBread: 1,
+  name: '',
+  preparation_time: '',
+  type: '',
+  no_of_slices: 1,
+  slices_of_bread: 1,
   diameter: 30,
-  spiciness: 1,
+  spiciness_scale: 1,
 };
+
+const URL = 'https://frosty-wood-6558.getsandbox.com:443/dishes';
 
 function App() {
   const [formData, setFormData] = useState(initialState);
@@ -21,7 +23,14 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     const shouldSubmit = validateForm(formData);
+    if (!shouldSubmit) {
+      return;
+    }
+
+    const jsonData = prepareData({ ...formData });
+    postData(URL, jsonData).then((response) => console.log(response));
   }
 
   return (
@@ -34,8 +43,8 @@ function App() {
             <InputField
               type="text"
               label="Dish name"
-              id="dishName"
-              value={formData.dishName}
+              id="name"
+              value={formData.name}
               onInputChange={handleInputChange}
             />
           </div>
@@ -44,8 +53,8 @@ function App() {
             <InputField
               type="number"
               label="Preparation time"
-              id="preparationTime"
-              value={formData.preparationTime}
+              id="preparation_time"
+              value={formData.preparation_time}
               onInputChange={handleInputChange}
             />
           </div>
@@ -53,21 +62,21 @@ function App() {
           <div className="flex flex-wrap gap-1">
             <SelectField
               label="Dish type"
-              id="dishType"
-              value={formData.dishType}
+              id="type"
+              value={formData.type}
               options={['pizza', 'soup', 'sandwich']}
               onInputChange={handleInputChange}
             />
           </div>
 
-          {formData.dishType === 'pizza' && (
+          {formData.type === 'pizza' && (
             <>
               <div className="flex flex-wrap gap-1 animate-slide-from-top">
                 <InputField
                   label="Number of slices"
-                  id="numberOfSlices"
+                  id="no_of_slices"
                   type="number"
-                  value={formData.numberOfSlices}
+                  value={formData.no_of_slices}
                   onInputChange={handleInputChange}
                 />
               </div>
@@ -84,26 +93,26 @@ function App() {
             </>
           )}
 
-          {formData.dishType === 'soup' && (
+          {formData.type === 'soup' && (
             <div className="flex flex-wrap gap-1 animate-slide-from-top">
               <InputField
                 label="Spiceness"
-                id="spiciness"
+                id="spiciness_scale"
                 type="range"
                 range={{ min: 1, max: 10 }}
-                value={formData.spiciness}
+                value={formData.spiciness_scale}
                 onInputChange={handleInputChange}
               />
             </div>
           )}
 
-          {formData.dishType === 'sandwich' && (
+          {formData.type === 'sandwich' && (
             <div className="flex flex-wrap gap-1 animate-slide-from-top">
               <InputField
                 label="Slices"
-                id="slicesOfBread"
+                id="slices_of_bread"
                 type="number"
-                value={formData.slicesOfBread}
+                value={formData.slices_of_bread}
                 onInputChange={handleInputChange}
               />
             </div>
