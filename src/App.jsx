@@ -32,7 +32,10 @@ function App() {
     }
 
     const jsonData = prepareData({ ...formData });
-    postData(URL, jsonData).then((response) => console.log(response));
+
+    postData(URL, jsonData).then((response) => {
+      Swal.fire({ title: 'Request successful', icon: 'success', text: `request id: ${response.id}` });
+    });
   }
 
   return (
