@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 import { useState } from 'react';
 import { InputField, SelectField } from './components';
 import { validateForm, prepareData, postData } from './utility';
