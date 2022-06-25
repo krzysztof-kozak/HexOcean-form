@@ -1,1 +1,1 @@
-export { default as formDataReducer } from './formDataReducer';
+export { default as dishReducer } from './dishReducer';

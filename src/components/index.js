@@ -1,2 +1,9 @@
 export { InputField } from './input-field';
 export { SelectField } from './select-field';
+export { PreparationTimeField } from './preparation-time-field';
+export { DishNameField } from './dish-name-field';
+export { DishTypeField } from './dish-type-field';
+export { PizzaSlicesField } from './pizza-slices-field';
+export { PizzaDiameterField } from './pizza-diameter-field';
+export { SoupSpicinessField } from './soup-spiciness-field';
+export { SandwichSlicesField } from './sandwich-slices-field';

@@ -16,7 +16,7 @@ export default function InputField({ id, label, type, value, range, onInputChang
         value={value}
         min={range?.min ? range.min : null}
         max={range?.max ? range.max : null}
-        onInput={(e) => onInputChange({ [id]: e.target.value })}
+        onInput={(e) => onInputChange(e.target.value)}
         onBlur={() => setTouched(true)}
       />
       <div className="min-h-[20px]">

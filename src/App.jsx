@@ -1,8 +1,17 @@
 import Swal from 'sweetalert2';
 
 import { useReducer } from 'react';
-import { InputField, SelectField } from './components';
-import { formDataReducer } from './hooks';
+import {
+  PreparationTimeField,
+  DishNameField,
+  DishTypeField,
+  PizzaSlicesField,
+  PizzaDiameterField,
+  SoupSpicinessField,
+  SandwichSlicesField,
+} from './components';
+
+import { dishReducer } from './hooks';
 import { validateForm, prepareData, postData } from './utility';
 
 const initialState = {
@@ -18,49 +27,7 @@ const initialState = {
 const URL = 'https://frosty-wood-6558.getsandbox.com:443/dishes';
 
 function App() {
-  const [dish, dispatch] = useReducer(formDataReducer, initialState);
-
-  function handleDishNameChange(name) {
-    dispatch({
-      type: 'dish_name_changed',
-      dishName: name,
-    });
-  }
-
-  function handlePreparationTimeChange(duration) {
-    dispatch({
-      type: 'preparation_time_changed',
-      preparationDuration: duration,
-    });
-  }
-
-  function handleDishTypeChange(type) {
-    dispatch({
-      type: 'dish_type_changed',
-      dishType: type,
-    });
-  }
-
-  function handlePizzaDiameterChange(diameter) {
-    dispatch({
-      type: 'pizza_diameter_changed',
-      pizzaDiameter: diameter,
-    });
-  }
-
-  function handleNumberOfPizzaSlicesChange(slices) {
-    dispatch({
-      type: 'number_of_pizza_slices_changed',
-      numberOfSlices: slices,
-    });
-  }
-
-  function handleSoupSpicinessChange(spiciness) {
-    dispatch({
-      type: 'soup_spiciness_changed',
-      soupSpiciness: spiciness,
-    });
-  }
+  const [dish, dispatch] = useReducer(dishReducer, initialState);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -83,47 +50,19 @@ function App() {
         <form className="space-y-3" onSubmit={handleSubmit}>
           <h1 className="text-5xl font-bold mb-8">Your request</h1>
 
-          <div className="flex flex-wrap gap-1">
-            <InputField type="text" label="Dish name" id="name" value={dish.name} />
-          </div>
-
-          <div className="flex flex-wrap gap-1">
-            <InputField type="number" label="Preparation time" id="preparation_time" value={dish.preparation_time} />
-          </div>
-
-          <div className="flex flex-wrap gap-1">
-            <SelectField label="Dish type" id="type" value={dish.type} options={['pizza', 'soup', 'sandwich']} />
-          </div>
+          <DishNameField dispatch={dispatch} name={dish.name} />
+          <PreparationTimeField dispatch={dispatch} preparationTime={dish.preparation_time} />
+          <DishTypeField dispatch={dispatch} type={dish.type} />
 
           {dish.type === 'pizza' && (
             <>
-              <div className="flex flex-wrap gap-1 animate-slide-from-top">
-                <InputField label="Number of slices" id="no_of_slices" type="number" value={dish.no_of_slices} />
-              </div>
-
-              <div className="flex flex-wrap gap-1 animate-slide-from-top">
-                <InputField label="Diameter" id="diameter" type="number" value={dish.diameter} />
-              </div>
+              <PizzaSlicesField dispatch={dispatch} slices={dish.no_of_slices} />
+              <PizzaDiameterField dispatch={dispatch} diameter={dish.diameter} />
             </>
           )}
 
-          {dish.type === 'soup' && (
-            <div className="flex flex-wrap gap-1 animate-slide-from-top">
-              <InputField
-                label="Spiceness"
-                id="spiciness_scale"
-                type="range"
-                range={{ min: 1, max: 10 }}
-                value={dish.spiciness_scale}
-              />
-            </div>
-          )}
-
-          {dish.type === 'sandwich' && (
-            <div className="flex flex-wrap gap-1 animate-slide-from-top">
-              <InputField label="Slices" id="slices_of_bread" type="number" value={dish.slices_of_bread} />
-            </div>
-          )}
+          {dish.type === 'soup' && <SoupSpicinessField dispatch={dispatch} spiciness={dish.spiciness_scale} />}
+          {dish.type === 'sandwich' && <SandwichSlicesField dispatch={dispatch} slices={dish.slices_of_bread} />}
 
           <button className="w-full rounded-md border border-gray-300 bg-black py-2 text-white hover:bg-black/90">
             Submit
