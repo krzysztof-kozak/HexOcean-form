@@ -1,7 +1,8 @@
 import Swal from 'sweetalert2';
 
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { InputField, SelectField } from './components';
+import { formDataReducer } from './hooks';
 import { validateForm, prepareData, postData } from './utility';
 
 const initialState = {
@@ -17,21 +18,59 @@ const initialState = {
 const URL = 'https://frosty-wood-6558.getsandbox.com:443/dishes';
 
 function App() {
-  const [formData, setFormData] = useState(initialState);
+  const [dish, dispatch] = useReducer(formDataReducer, initialState);
 
-  function handleInputChange(nextInput) {
-    setFormData({ ...formData, ...nextInput });
+  function handleDishNameChange(name) {
+    dispatch({
+      type: 'dish_name_changed',
+      dishName: name,
+    });
+  }
+
+  function handlePreparationTimeChange(duration) {
+    dispatch({
+      type: 'preparation_time_changed',
+      preparationDuration: duration,
+    });
+  }
+
+  function handleDishTypeChange(type) {
+    dispatch({
+      type: 'dish_type_changed',
+      dishType: type,
+    });
+  }
+
+  function handlePizzaDiameterChange(diameter) {
+    dispatch({
+      type: 'pizza_diameter_changed',
+      pizzaDiameter: diameter,
+    });
+  }
+
+  function handleNumberOfPizzaSlicesChange(slices) {
+    dispatch({
+      type: 'number_of_pizza_slices_changed',
+      numberOfSlices: slices,
+    });
+  }
+
+  function handleSoupSpicinessChange(spiciness) {
+    dispatch({
+      type: 'soup_spiciness_changed',
+      soupSpiciness: spiciness,
+    });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    const shouldSubmit = validateForm(formData);
+    const shouldSubmit = validateForm(dish);
     if (!shouldSubmit) {
       return;
     }
 
-    const jsonData = prepareData({ ...formData });
+    const jsonData = prepareData({ ...dish });
 
     postData(URL, jsonData).then((response) => {
       Swal.fire({ title: 'Request successful', icon: 'success', text: `request id: ${response.id}` });
@@ -45,81 +84,44 @@ function App() {
           <h1 className="text-5xl font-bold mb-8">Your request</h1>
 
           <div className="flex flex-wrap gap-1">
-            <InputField
-              type="text"
-              label="Dish name"
-              id="name"
-              value={formData.name}
-              onInputChange={handleInputChange}
-            />
+            <InputField type="text" label="Dish name" id="name" value={dish.name} />
           </div>
 
           <div className="flex flex-wrap gap-1">
-            <InputField
-              type="number"
-              label="Preparation time"
-              id="preparation_time"
-              value={formData.preparation_time}
-              onInputChange={handleInputChange}
-            />
+            <InputField type="number" label="Preparation time" id="preparation_time" value={dish.preparation_time} />
           </div>
 
           <div className="flex flex-wrap gap-1">
-            <SelectField
-              label="Dish type"
-              id="type"
-              value={formData.type}
-              options={['pizza', 'soup', 'sandwich']}
-              onInputChange={handleInputChange}
-            />
+            <SelectField label="Dish type" id="type" value={dish.type} options={['pizza', 'soup', 'sandwich']} />
           </div>
 
-          {formData.type === 'pizza' && (
+          {dish.type === 'pizza' && (
             <>
               <div className="flex flex-wrap gap-1 animate-slide-from-top">
-                <InputField
-                  label="Number of slices"
-                  id="no_of_slices"
-                  type="number"
-                  value={formData.no_of_slices}
-                  onInputChange={handleInputChange}
-                />
+                <InputField label="Number of slices" id="no_of_slices" type="number" value={dish.no_of_slices} />
               </div>
 
               <div className="flex flex-wrap gap-1 animate-slide-from-top">
-                <InputField
-                  label="Diameter"
-                  id="diameter"
-                  type="number"
-                  value={formData.diameter}
-                  onInputChange={handleInputChange}
-                />
+                <InputField label="Diameter" id="diameter" type="number" value={dish.diameter} />
               </div>
             </>
           )}
 
-          {formData.type === 'soup' && (
+          {dish.type === 'soup' && (
             <div className="flex flex-wrap gap-1 animate-slide-from-top">
               <InputField
                 label="Spiceness"
                 id="spiciness_scale"
                 type="range"
                 range={{ min: 1, max: 10 }}
-                value={formData.spiciness_scale}
-                onInputChange={handleInputChange}
+                value={dish.spiciness_scale}
               />
             </div>
           )}
 
-          {formData.type === 'sandwich' && (
+          {dish.type === 'sandwich' && (
             <div className="flex flex-wrap gap-1 animate-slide-from-top">
-              <InputField
-                label="Slices"
-                id="slices_of_bread"
-                type="number"
-                value={formData.slices_of_bread}
-                onInputChange={handleInputChange}
-              />
+              <InputField label="Slices" id="slices_of_bread" type="number" value={dish.slices_of_bread} />
             </div>
           )}
 
