@@ -12,7 +12,7 @@ export default function SelectField({ id, label, value, options, onInputChange }
         className="w-full rounded-md"
         name={id}
         id={id}
-        onChange={(e) => onInputChange({ [id]: e.target.value })}
+        onChange={(e) => onInputChange(e.target.value)}
         onBlur={() => setTouched(true)}
         value={value}
       >
