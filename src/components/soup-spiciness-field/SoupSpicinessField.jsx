@@ -1,13 +1,26 @@
 import { InputField } from '../input-field';
-import { useDish, useDishDispatch } from '../../context';
+import { useDish, useDishDispatch, useErrorDispatch } from '../../context';
 
 // SoupSpicinessField is a special case of a generic InputField component.
 export default function SoupSpicinessField() {
   const { spiciness_scale, type } = useDish();
-  const dispatch = useDishDispatch();
+  const dishDispatch = useDishDispatch();
+  const errorDispatch = useErrorDispatch();
 
   function handleSoupSpicinessChange(spiciness) {
-    dispatch({
+    dishDispatch({
+      type: 'soup_spiciness_changed',
+      soupSpiciness: spiciness,
+    });
+
+    errorDispatch({
+      type: 'soup_spiciness_changed',
+      soupSpiciness: spiciness,
+    });
+  }
+
+  function handleInputBlur(spiciness) {
+    errorDispatch({
       type: 'soup_spiciness_changed',
       soupSpiciness: spiciness,
     });
@@ -24,6 +37,7 @@ export default function SoupSpicinessField() {
             range={{ min: 1, max: 10 }}
             value={spiciness_scale}
             onInputChange={handleSoupSpicinessChange}
+            onInputBlur={handleInputBlur}
           />
         </div>
       )}
