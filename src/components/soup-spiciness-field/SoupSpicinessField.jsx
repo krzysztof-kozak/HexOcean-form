@@ -1,4 +1,5 @@
 import { InputField } from '../input-field';
+import { RangeLabels } from './index';
 import { useDish, useDishDispatch, useErrorDispatch } from '../../context';
 
 // SoupSpicinessField is a special case of a generic InputField component.
@@ -39,6 +40,8 @@ export default function SoupSpicinessField() {
             onInputChange={handleSoupSpicinessChange}
             onInputBlur={handleInputBlur}
           />
+
+          <RangeLabels numberOfLabels={10} />
         </div>
       )}
     </>
