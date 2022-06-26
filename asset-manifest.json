@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/hexocean-form/static/css/main.a9dabaff.css",
-    "main.js": "/hexocean-form/static/js/main.0f6469bf.js",
+    "main.css": "/hexocean-form/static/css/main.9e92f46a.css",
+    "main.js": "/hexocean-form/static/js/main.12194a99.js",
     "index.html": "/hexocean-form/index.html",
-    "main.a9dabaff.css.map": "/hexocean-form/static/css/main.a9dabaff.css.map",
-    "main.0f6469bf.js.map": "/hexocean-form/static/js/main.0f6469bf.js.map"
+    "main.9e92f46a.css.map": "/hexocean-form/static/css/main.9e92f46a.css.map",
+    "main.12194a99.js.map": "/hexocean-form/static/js/main.12194a99.js.map"
   },
   "entrypoints": [
-    "static/css/main.a9dabaff.css",
-    "static/js/main.0f6469bf.js"
+    "static/css/main.9e92f46a.css",
+    "static/js/main.12194a99.js"
   ]
 }
