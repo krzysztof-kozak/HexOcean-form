@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/krzysztof-kozak/hexocean-form/static/css/main.a9dabaff.css",
-    "main.js": "/krzysztof-kozak/hexocean-form/static/js/main.a38ce35f.js",
-    "index.html": "/krzysztof-kozak/hexocean-form/index.html",
-    "main.a9dabaff.css.map": "/krzysztof-kozak/hexocean-form/static/css/main.a9dabaff.css.map",
-    "main.a38ce35f.js.map": "/krzysztof-kozak/hexocean-form/static/js/main.a38ce35f.js.map"
+    "main.css": "/hexocean-form/static/css/main.a9dabaff.css",
+    "main.js": "/hexocean-form/static/js/main.a38ce35f.js",
+    "index.html": "/hexocean-form/index.html",
+    "main.a9dabaff.css.map": "/hexocean-form/static/css/main.a9dabaff.css.map",
+    "main.a38ce35f.js.map": "/hexocean-form/static/js/main.a38ce35f.js.map"
   },
   "entrypoints": [
     "static/css/main.a9dabaff.css",
