@@ -8,5 +8,10 @@ export default async function postData(url, orderInformation) {
     body: orderInformation,
   });
 
-  return response.json();
+  if (!response.ok) {
+    const error = await response.json();
+    return { error };
+  }
+
+  return { success: await response.json() };
 }

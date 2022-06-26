@@ -21,7 +21,20 @@ export default function DishForm({ children }) {
     const jsonData = prepareData({ ...dish });
 
     postData(URL, jsonData).then((response) => {
-      Swal.fire({ title: 'Request successful', icon: 'success', text: `request id: ${response.id}` });
+      if (response.error) {
+        Swal.fire({
+          title: 'Request failed',
+          icon: 'error',
+          html: `
+            <h2 class="mb-4 font-bold text-red-500">Response from Server</h2>
+            <code class="text-red-300 ">${JSON.stringify(response)}</code>
+          `,
+        });
+      }
+
+      if (response.success) {
+        Swal.fire({ title: 'Request successful', icon: 'success', text: `request id: ${response.success.id}` });
+      }
     });
 
     dishDispatch({ type: 'form_submitted' });
