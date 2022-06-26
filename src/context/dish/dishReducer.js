@@ -28,6 +28,18 @@ export function dishReducer(dish, action) {
       return { ...dish, spiciness_scale: action.soupSpiciness };
     }
 
+    case 'form_submitted': {
+      return {
+        name: '',
+        preparation_time: '',
+        type: '',
+        no_of_slices: 1,
+        slices_of_bread: 1,
+        diameter: 30,
+        spiciness_scale: 1,
+      };
+    }
+
     default: {
       throw Error('Unknown action: ' + action.type);
     }

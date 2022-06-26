@@ -1,12 +1,13 @@
 import Swal from 'sweetalert2';
 
-import { useDish, useError } from '../../context';
+import { useDish, useDishDispatch, useError } from '../../context';
 import { formHasErrors, prepareData, postData } from '../../utility';
 
 const URL = 'https://frosty-wood-6558.getsandbox.com:443/dishes';
 
 export default function DishForm({ children }) {
   const dish = useDish();
+  const dishDispatch = useDishDispatch();
   const error = useError();
   const invalidForm = formHasErrors(dish.type, error);
 
@@ -22,6 +23,8 @@ export default function DishForm({ children }) {
     postData(URL, jsonData).then((response) => {
       Swal.fire({ title: 'Request successful', icon: 'success', text: `request id: ${response.id}` });
     });
+
+    dishDispatch({ type: 'form_submitted' });
   }
   return (
     <form className="space-y-3" onSubmit={handleSubmit}>
