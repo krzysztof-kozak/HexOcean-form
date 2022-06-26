@@ -1,7 +1,11 @@
+import { useDish, useDishDispatch } from '../../context';
 import { InputField } from '../input-field';
 
 // DishNameField is a special case of a generic InputField component.
-export default function DishNameField({ dispatch, name }) {
+export default function DishNameField() {
+  const { name } = useDish();
+  const dispatch = useDishDispatch();
+
   function handleDishNameChange(name) {
     dispatch({
       type: 'dish_name_changed',

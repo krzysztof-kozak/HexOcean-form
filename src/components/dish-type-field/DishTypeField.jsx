@@ -1,7 +1,11 @@
+import { useDish, useDishDispatch } from '../../context';
 import { SelectField } from '../select-field';
 
 // DishTypeField is a special case of a generic SelectField component.
-export default function DishTypeField({ dispatch, type }) {
+export default function DishTypeField() {
+  const { type } = useDish();
+  const dispatch = useDishDispatch();
+
   function handleDishTypeChange(type) {
     dispatch({
       type: 'dish_type_changed',

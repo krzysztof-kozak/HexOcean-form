@@ -1,7 +1,11 @@
 import { InputField } from '../input-field';
+import { useDish, useDishDispatch } from '../../context/';
 
 // PreparationTimeField is a special case of a generic InputField component.
-export default function PreparationTimeField({ dispatch, preparationTime }) {
+export default function PreparationTimeField() {
+  const { preparation_time } = useDish();
+  const dispatch = useDishDispatch();
+
   function handlePreparationTimeChange(duration) {
     dispatch({
       type: 'preparation_time_changed',
@@ -15,7 +19,7 @@ export default function PreparationTimeField({ dispatch, preparationTime }) {
         type="number"
         label="Preparation time"
         id="preparation_time"
-        value={preparationTime}
+        value={preparation_time}
         onInputChange={handlePreparationTimeChange}
       />
     </div>

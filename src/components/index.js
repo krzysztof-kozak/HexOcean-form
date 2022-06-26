@@ -1,5 +1,6 @@
 export { InputField } from './input-field';
 export { SelectField } from './select-field';
+export { DishForm } from './dish-form';
 export { PreparationTimeField } from './preparation-time-field';
 export { DishNameField } from './dish-name-field';
 export { DishTypeField } from './dish-type-field';

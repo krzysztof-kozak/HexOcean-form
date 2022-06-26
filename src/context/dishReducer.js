@@ -1,4 +1,4 @@
-export default function dishReducer(dish, action) {
+export function dishReducer(dish, action) {
   switch (action.type) {
     case 'dish_name_changed': {
       return { ...dish, name: action.dishName };
