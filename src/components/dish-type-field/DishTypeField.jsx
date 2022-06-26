@@ -19,6 +19,13 @@ export default function DishTypeField() {
     });
   }
 
+  function handleInputBlur(type) {
+    errorDispatch({
+      type: 'dish_type_changed',
+      dishType: type,
+    });
+  }
+
   return (
     <div className="flex flex-wrap gap-1">
       <SelectField
@@ -28,6 +35,7 @@ export default function DishTypeField() {
         errorKey="type"
         options={['pizza', 'soup', 'sandwich']}
         onInputChange={handleDishTypeChange}
+        onInputBlur={handleInputBlur}
       />
     </div>
   );

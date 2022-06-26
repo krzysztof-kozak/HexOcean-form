@@ -28,7 +28,7 @@ export default function InputField({ id, label, type, value, range, onInputChang
         }}
       />
       <div className="min-h-[20px]">
-        {showError && <p className="w-56 basis-full text-sm text-red-500">{errorMessage}</p>}
+        {showError && <p className="basis-full text-sm text-red-500">{errorMessage}</p>}
       </div>
     </>
   );

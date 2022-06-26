@@ -1,7 +1,12 @@
 import { useState } from 'react';
+import { useError } from '../../context';
 
-export default function SelectField({ id, label, value, options, onInputChange }) {
+export default function SelectField({ id, label, value, options, onInputChange, onInputBlur, errorKey }) {
   const [touched, setTouched] = useState(false);
+
+  const error = useError();
+  const errorMessage = error[errorKey];
+  const showError = touched && errorMessage;
 
   return (
     <>
@@ -13,7 +18,10 @@ export default function SelectField({ id, label, value, options, onInputChange }
         name={id}
         id={id}
         onChange={(e) => onInputChange(e.target.value)}
-        onBlur={() => setTouched(true)}
+        onBlur={() => {
+          setTouched(true);
+          onInputBlur(value);
+        }}
         value={value}
       >
         <option value="">Please select</option>
@@ -27,7 +35,7 @@ export default function SelectField({ id, label, value, options, onInputChange }
         })}
       </select>
       <div className="min-h-[20px]">
-        {!value && touched && <p className="w-56 basis-full text-sm text-red-500">This field is required</p>}
+        {showError && <p className="basis-full text-sm text-red-500">{errorMessage}</p>}
       </div>
     </>
   );
