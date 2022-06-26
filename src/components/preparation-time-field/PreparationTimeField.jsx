@@ -30,6 +30,7 @@ export default function PreparationTimeField() {
     <div className="flex flex-wrap gap-1">
       <InputField
         type="number"
+        range={{ min: 1, max: 600 }}
         label="Preparation time"
         id="preparation_time"
         value={preparation_time}

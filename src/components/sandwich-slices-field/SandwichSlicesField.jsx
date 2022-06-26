@@ -34,6 +34,7 @@ export default function SandwichSlicesField() {
             label="Slices"
             id="slices_of_bread"
             type="number"
+            range={{ min: 1, max: 20 }}
             value={slices_of_bread}
             errorKey="slices_of_bread"
             onInputChange={handleSandwichSlicesChange}

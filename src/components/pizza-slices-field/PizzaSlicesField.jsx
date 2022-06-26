@@ -34,6 +34,7 @@ export default function PizzaSlicesField() {
             label="Number of slices"
             id="no_of_slices"
             type="number"
+            range={{ min: 1, max: 20 }}
             value={no_of_slices}
             errorKey="no_of_slices"
             onInputChange={handleNumberOfPizzaSlicesChange}

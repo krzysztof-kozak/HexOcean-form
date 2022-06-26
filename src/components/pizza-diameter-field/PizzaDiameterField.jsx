@@ -34,6 +34,7 @@ export default function PizzaDiameterField() {
             label="Diameter"
             id="diameter"
             type="number"
+            range={{ min: 30, max: 60 }}
             value={diameter}
             errorKey="diameter"
             onInputChange={handlePizzaDiameterChange}
