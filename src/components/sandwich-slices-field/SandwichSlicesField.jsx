@@ -1,13 +1,26 @@
 import { InputField } from '../input-field';
-import { useDish, useDishDispatch } from '../../context';
+import { useDish, useDishDispatch, useErrorDispatch } from '../../context';
 
 // SandwichSlicesField is a special case of a generic InputField component.
 export default function SandwichSlicesField() {
   const { slices_of_bread, type } = useDish();
-  const dispatch = useDishDispatch();
+  const dishDispatch = useDishDispatch();
+  const errorDispatch = useErrorDispatch();
 
   function handleSandwichSlicesChange(slices) {
-    dispatch({
+    dishDispatch({
+      type: 'number_of_bread_slices_changed',
+      numberOfSlices: slices,
+    });
+
+    errorDispatch({
+      type: 'number_of_bread_slices_changed',
+      numberOfSlices: slices,
+    });
+  }
+
+  function handleInputBlur(slices) {
+    errorDispatch({
       type: 'number_of_bread_slices_changed',
       numberOfSlices: slices,
     });
@@ -22,7 +35,9 @@ export default function SandwichSlicesField() {
             id="slices_of_bread"
             type="number"
             value={slices_of_bread}
+            errorKey="slices_of_bread"
             onInputChange={handleSandwichSlicesChange}
+            onInputBlur={handleInputBlur}
           />
         </div>
       )}

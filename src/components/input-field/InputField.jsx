@@ -1,7 +1,12 @@
 import { useState } from 'react';
+import { useError } from '../../context';
 
-export default function InputField({ id, label, type, value, range, onInputChange }) {
+export default function InputField({ id, label, type, value, range, onInputChange, onInputBlur, errorKey }) {
   const [touched, setTouched] = useState(false);
+
+  const error = useError();
+  const errorMessage = error[errorKey];
+  const showError = touched && errorMessage;
 
   return (
     <>
@@ -17,10 +22,13 @@ export default function InputField({ id, label, type, value, range, onInputChang
         min={range?.min ? range.min : null}
         max={range?.max ? range.max : null}
         onInput={(e) => onInputChange(e.target.value)}
-        onBlur={() => setTouched(true)}
+        onBlur={() => {
+          setTouched(true);
+          onInputBlur(value);
+        }}
       />
       <div className="min-h-[20px]">
-        {!value && touched && <p className="w-56 basis-full text-sm text-red-500">This field is required</p>}
+        {showError && <p className="w-56 basis-full text-sm text-red-500">{errorMessage}</p>}
       </div>
     </>
   );

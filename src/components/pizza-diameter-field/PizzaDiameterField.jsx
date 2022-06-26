@@ -1,13 +1,26 @@
 import { InputField } from '../input-field';
-import { useDish, useDishDispatch } from '../../context';
+import { useDish, useDishDispatch, useErrorDispatch } from '../../context';
 
 // PizzaDiameterField is a special case of a generic InputField component.
 export default function PizzaDiameterField() {
   const { diameter, type } = useDish();
-  const dispatch = useDishDispatch();
+  const dishDispatch = useDishDispatch();
+  const errorDispatch = useErrorDispatch();
 
   function handlePizzaDiameterChange(diameter) {
-    dispatch({
+    dishDispatch({
+      type: 'pizza_diameter_changed',
+      pizzaDiameter: diameter,
+    });
+
+    errorDispatch({
+      type: 'pizza_diameter_changed',
+      pizzaDiameter: diameter,
+    });
+  }
+
+  function handleInputBlur(diameter) {
+    errorDispatch({
       type: 'pizza_diameter_changed',
       pizzaDiameter: diameter,
     });
@@ -22,7 +35,9 @@ export default function PizzaDiameterField() {
             id="diameter"
             type="number"
             value={diameter}
+            errorKey="diameter"
             onInputChange={handlePizzaDiameterChange}
+            onInputBlur={handleInputBlur}
           />
         </div>
       )}

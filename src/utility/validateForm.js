@@ -1,21 +1,19 @@
-export default function validateForm(formData) {
-  const { name, preparation_time, type, no_of_slices, slices_of_bread, diameter, spiciness_scale } = formData;
+export default function formHasErrors(dishType, errorObject) {
+  const { name, preparation_time, type, no_of_slices, diameter, spiciness_scale, slices_of_bread } = errorObject;
 
-  if (!name || preparation_time <= 0 || !type) {
-    return false;
+  if (Boolean(name || preparation_time || type)) {
+    return true;
   }
 
-  switch (type) {
-    case 'pizza':
-      return no_of_slices > 0 && diameter > 0;
+  if (dishType === 'pizza') {
+    return Boolean(no_of_slices || diameter);
+  }
 
-    case 'soup':
-      return spiciness_scale > 0;
+  if (dishType === 'soup') {
+    return Boolean(spiciness_scale);
+  }
 
-    case 'sandwich':
-      return slices_of_bread > 0;
-
-    default:
-      break;
+  if (dishType === 'sandwich') {
+    return Boolean(slices_of_bread);
   }
 }

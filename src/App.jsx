@@ -1,5 +1,5 @@
 import { DishForm } from './components';
-import { DishProvider } from './context';
+import { DishProvider, ErrorProvider } from './context';
 
 import {
   PreparationTimeField,
@@ -16,17 +16,19 @@ function App() {
     <div className="grid min-h-screen place-items-center bg-gray-200 px-6 sm:px-0">
       <div className="rounded-lg bg-white px-6 py-8 shadow md:px-10 w-full sm:max-w-lg">
         <DishProvider>
-          <DishForm>
-            <DishNameField />
-            <PreparationTimeField />
-            <DishTypeField />
+          <ErrorProvider>
+            <DishForm>
+              <DishNameField />
+              <PreparationTimeField />
+              <DishTypeField />
 
-            <PizzaSlicesField />
-            <PizzaDiameterField />
+              <PizzaSlicesField />
+              <PizzaDiameterField />
 
-            <SoupSpicinessField />
-            <SandwichSlicesField />
-          </DishForm>
+              <SoupSpicinessField />
+              <SandwichSlicesField />
+            </DishForm>
+          </ErrorProvider>
         </DishProvider>
       </div>
     </div>

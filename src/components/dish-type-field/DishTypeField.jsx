@@ -1,13 +1,19 @@
-import { useDish, useDishDispatch } from '../../context';
+import { useDish, useDishDispatch, useErrorDispatch } from '../../context';
 import { SelectField } from '../select-field';
 
 // DishTypeField is a special case of a generic SelectField component.
 export default function DishTypeField() {
   const { type } = useDish();
-  const dispatch = useDishDispatch();
+  const dishDispatch = useDishDispatch();
+  const errorDispatch = useErrorDispatch();
 
   function handleDishTypeChange(type) {
-    dispatch({
+    dishDispatch({
+      type: 'dish_type_changed',
+      dishType: type,
+    });
+
+    errorDispatch({
       type: 'dish_type_changed',
       dishType: type,
     });
@@ -19,6 +25,7 @@ export default function DishTypeField() {
         label="Dish type"
         id="type"
         value={type}
+        errorKey="type"
         options={['pizza', 'soup', 'sandwich']}
         onInputChange={handleDishTypeChange}
       />
