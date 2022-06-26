@@ -1,12 +1,8 @@
-import { useState } from 'react';
 import { useError } from '../../context';
 
 export default function SelectField({ id, label, value, options, onInputChange, onInputBlur, errorKey }) {
-  const [touched, setTouched] = useState(false);
-
   const error = useError();
   const errorMessage = error[errorKey];
-  const showError = touched && errorMessage;
 
   return (
     <>
@@ -19,7 +15,6 @@ export default function SelectField({ id, label, value, options, onInputChange, 
         id={id}
         onChange={(e) => onInputChange(e.target.value)}
         onBlur={() => {
-          setTouched(true);
           onInputBlur(value);
         }}
         value={value}
@@ -35,7 +30,7 @@ export default function SelectField({ id, label, value, options, onInputChange, 
         })}
       </select>
       <div className="min-h-[20px]">
-        {showError && <p className="basis-full text-sm text-red-500">{errorMessage}</p>}
+        {errorMessage && <p className="basis-full text-sm text-red-500">{errorMessage}</p>}
       </div>
     </>
   );
