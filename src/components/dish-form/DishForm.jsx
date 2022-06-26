@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 
-import { useDish, useDishDispatch, useError } from '../../context';
+import { useDish, useDishDispatch, useError, useErrorDispatch } from '../../context';
 import { formHasErrors, prepareData, postData } from '../../utility';
 
 const URL = 'https://frosty-wood-6558.getsandbox.com:443/dishes';
@@ -9,6 +9,7 @@ export default function DishForm({ children }) {
   const dish = useDish();
   const dishDispatch = useDishDispatch();
   const error = useError();
+  const errorDispatch = useErrorDispatch();
   const invalidForm = formHasErrors(dish.type, error);
 
   function handleSubmit(e) {
@@ -38,6 +39,7 @@ export default function DishForm({ children }) {
     });
 
     dishDispatch({ type: 'form_submitted' });
+    errorDispatch({ type: 'form_submitted' });
   }
   return (
     <form className="space-y-3" onSubmit={handleSubmit}>
@@ -46,6 +48,7 @@ export default function DishForm({ children }) {
       {children}
 
       <button
+        type="submit"
         disabled={invalidForm}
         className="disabled:cursor-not-allowed disabled:bg-zinc-200 disabled:text-zinc-400 font-bold w-full rounded-md border border-gray-300 bg-black py-2 text-white hover:bg-black/90"
       >

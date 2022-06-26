@@ -187,6 +187,18 @@ export function errorReducer(error, action) {
       return { ...error, spiciness_scale: validationSchema.spiciness_scale(soupSpiciness) };
     }
 
+    case 'form_submitted': {
+      return {
+        name: true,
+        preparation_time: true,
+        type: true,
+        no_of_slices: '',
+        slices_of_bread: '',
+        diameter: '',
+        spiciness_scale: '',
+      };
+    }
+
     default: {
       throw Error('Unknown action: ' + action.type);
     }
