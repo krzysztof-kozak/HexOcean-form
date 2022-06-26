@@ -31,7 +31,7 @@ export default function PreparationTimeField() {
       <InputField
         type="number"
         range={{ min: 1, max: 600 }}
-        label="Preparation time"
+        label="Preparation time (in minutes)"
         id="preparation_time"
         value={preparation_time}
         errorKey="preparation_time"
