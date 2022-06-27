@@ -26,7 +26,7 @@
 git clone git@github.com:krzysztof-kozak/hexocean-form.git
 cd hexocean-form
 npm install
-npn run start
+npm run start
 
 ```
 
