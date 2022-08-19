@@ -1,17 +1,13 @@
 import { formatPreparationTime } from './index';
 
 export default function prepareData(formData) {
-  const { type, preparation_time } = formData;
-
-  const formattedPreparationTime = formatPreparationTime(preparation_time);
-  formData.preparation_time = formattedPreparationTime;
+  formData.preparation_time = formatPreparationTime(formData.preparation_time);
 
   const propertiesToInclude = ['name', 'preparation_time', 'type'];
 
-  switch (type) {
+  switch (formData.type) {
     case 'pizza':
-      propertiesToInclude.push('no_of_slices');
-      propertiesToInclude.push('diameter');
+      propertiesToInclude.push('no_of_slices', 'diameter');
       formData.no_of_slices = parseInt(formData.no_of_slices);
       formData.diameter = parseInt(formData.diameter);
       break;
